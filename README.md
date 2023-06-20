@@ -1,2 +1,2 @@
-# Detecting-and-Responding-to-Threats-using-Microsoft-365-Defender
-Detecting and Responding to Threats using Microsoft 365 Defender, published by Packt
+# Mastering-Microsoft-365-Defender
+Mastering Microsoft 365 Defender, published by Packt
