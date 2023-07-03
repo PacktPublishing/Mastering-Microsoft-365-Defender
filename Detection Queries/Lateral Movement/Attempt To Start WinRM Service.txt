@@ -1,0 +1,5 @@
+//This query looks for attempts to start the WinRM service via sc.exe. 
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where FileName == "sc.exe"
+| where ProcessCommandLine contains "start\\ winrm"

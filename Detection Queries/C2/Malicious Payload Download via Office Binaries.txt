@@ -1,0 +1,3 @@
+//Detects downloads payload from remote server with office binaries
+DeviceProcessEvents | where ((FolderPath endswith "\\powerpnt.exe" or FolderPath endswith "\\winword.exe" or FolderPath endswith "\\excel.exe") and ProcessCommandLine contains "http")
+

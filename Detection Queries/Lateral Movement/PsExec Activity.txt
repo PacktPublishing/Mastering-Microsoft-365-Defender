@@ -1,0 +1,4 @@
+//Checking if PsExec is being used
+DeviceProcessEvents  
+| where FileName contains "psexec"  or 
+FileName contains "psexesvc" 

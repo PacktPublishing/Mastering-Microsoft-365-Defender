@@ -1,0 +1,2 @@
+//Detects RDP session hijacking by using MSTSC shadowing
+DeviceProcessEvents | where (ProcessCommandLine contains "noconsentprompt" and ProcessCommandLine contains "shadow:")

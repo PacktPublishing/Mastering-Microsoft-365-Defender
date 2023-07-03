@@ -1,0 +1,14 @@
+let rdpLogins =DeviceNetworkEvents
+// DC IDENTIFICATION SECTION BEGIN - CHANGE DEPENDING ON CUSTOMER
+| where DeviceName contains "-dc" 
+// DC IDENTIFICATION SECTION END
+| where  LocalPort == 3389
+| summarize Count=count(), Timestamps=makeset(Timestamp) by DeviceName, RemoteIP, RemoteIPType, RemoteUrl, DeviceId, ReportId;
+let knownNames = rdpLogins
+| project-rename LocalDeviceName = DeviceName
+| join kind=leftouter (DeviceNetworkEvents) on $left.RemoteIP == $right.LocalIP
+| summarize KnownDeviceNamesForIP=makeset(DeviceName) by RemoteIP
+| project-rename RemoteIPJoin = RemoteIP;
+rdpLogins
+| join kind=inner(knownNames) on $left.RemoteIP == $right.RemoteIPJoin
+| project DeviceName, RemoteIP, RemoteIPType, RemoteUrl, KnownDeviceNamesForIP, Timestamps, DeviceId, RemoteId

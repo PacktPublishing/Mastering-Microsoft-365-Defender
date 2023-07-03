@@ -1,0 +1,5 @@
+//Dump sam, system or security hives using REG.exe utility
+DeviceProcessEvents | where (FolderPath endswith "\\reg.exe" and 
+(ProcessCommandLine contains "save" or ProcessCommandLine contains "export") and 
+(ProcessCommandLine contains "hklm" or ProcessCommandLine contains "hkey_local_machine") and 
+(ProcessCommandLine endswith "\\system" or ProcessCommandLine endswith "\\sam") or ProcessCommandLine endswith "\\security")

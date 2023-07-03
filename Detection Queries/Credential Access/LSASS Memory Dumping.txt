@@ -1,0 +1,2 @@
+//Detect creation of dump files containing the memory space of lsass.exe, which contains sensitive credentials. Identifies usage of Sysinternals procdump.exe
+DeviceProcessEvents | where (((ProcessCommandLine contains "lsass" and ProcessCommandLine contains ".dmp") and not (FolderPath endswith "\\werfault.exe")) or (FolderPath contains "\\procdump" and FolderPath endswith ".exe" and ProcessCommandLine contains "lsass"))
